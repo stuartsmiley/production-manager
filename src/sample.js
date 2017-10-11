@@ -24,7 +24,7 @@ export class Sample {
         console.log('found existing sample with id ' +found.id);
         Object.assign(found, msg.sample);
       } else {
-        console.log("pushing new sample wiht id " + msg.sample.id);
+        console.log("pushing new sample with id " + msg.sample.id);
         this.samples.push(msg.sample);
         this.select(msg.sample);
       }
@@ -66,24 +66,16 @@ export class Sample {
                           console.log(data);
                           this.goats = data;
                   });
-  //    myPromise.then(goats => this.goats = goats);
-  //    this.wild.fetchGoatList().then(goats => this.goats = goats);
       console.log("activate with " + params.id);
       if (params.id == undefined) {
         this.createNew();
       }  else {
         console.log("start of else block calling api...");
-//        return this.api.getSampleDetails(params.id).then(sample => {
-//          this.sample = sample;
-//          this.routeConfig.navModel.setTitle(sample.goat.nombre);
-//          this.originalSample = JSON.parse(JSON.stringify(sample));
-//          this.ea.publish(new SampleViewed(this.sample));
-//      });
       }
     }
 
     get canSave() {
-        return this.sample.nombre && this.sample.liters && this.sample.sampleDate;
+        return (this.sample.id != -1) && (this.sample.liters > 0) && this.sample.sampleDate;
       }
 
     save() {

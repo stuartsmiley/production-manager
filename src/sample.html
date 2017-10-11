@@ -16,7 +16,7 @@
                     <option model.bind="null">Choose...</option>
                     <option repeat.for="goat of goats"
                             model.bind="goat">
-                      ${goat.id} - ${goat.nombre}
+                      ${goat.id  | tag} - ${goat.nombre}
                     </option>
                   </select>
                 </div>
@@ -24,7 +24,7 @@
               <div class="form-group">
                 <label class="col-sm-2 control-label">Liters</label>
                 <div class="col-sm-8">
-                  <input type="text" placeholder="liters" class="form-control" value.bind="sample.liters">
+                  <input type="number" placeholder="liters" class="form-control" value.bind="sample.liters">
                 </div>
               </div>
               <div class="form-group">
@@ -47,7 +47,7 @@
         <ul class="list-group">
           <li repeat.for="sample of samples" class.bind="sample.id === $parent.selectedId ? 'list-group-item active' : 'list-group-item'">
             <a route-href="route: sample; params.bind: {id:sample.id}" click.delegate="$parent.select(sample)">
-              <span class="list-group-item-heading">${sample.goat.id} - ${sample.goat.nombre}: ${sample.liters} liters at ${sample.sampleDate  | dateFormat}</span>
+              <span class="list-group-item-heading">${sample.goat.id | tag} - ${sample.goat.nombre}: ${sample.liters} liters at ${sample.sampleDate  | simpleDateFormat}</span>
             </a>
           </li>
         </ul>

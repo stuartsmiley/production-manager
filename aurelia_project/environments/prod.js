@@ -1,5 +1,6 @@
 export default {
   debug: false,
   testing: false,
-  apiBaseUrl: 'https://finca-la-caprichosa.com/farm-production/'
+  apiBaseUrl: 'https://finca-la-caprichosa.com/farm-production/',
+  'useXDomain': false
 };
