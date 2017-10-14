@@ -25,7 +25,8 @@ a:focus {
 .panel {
   margin: 20px;
 }
-
+.panel-body { padding: 10px; }
+.form-group { margin-bottom: 10px }
 .button-bar {
   right: 0;
   left: 0;
@@ -36,7 +37,7 @@ a:focus {
 
 .button-bar > button {
   float: right;
-  margin: 20px;
+  margin: 10px 20px;
 }
 
 li.list-group-item {

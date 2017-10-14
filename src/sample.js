@@ -24,7 +24,7 @@ export class Sample {
         console.log('found existing sample with id ' +found.id);
         Object.assign(found, msg.sample);
       } else {
-        console.log("pushing new sample wiht id " + msg.sample.id);
+        console.log("pushing new sample with id " + msg.sample.id);
         this.samples.push(msg.sample);
         this.select(msg.sample);
       }
@@ -33,58 +33,37 @@ export class Sample {
   }
 
   created() {
-//    this.api.getSampleList().then(samples => this.samples = samples);
+
   }
 
   select(sample) {
     console.log("Selected sample id " + sample.id);
     this.selectedId = sample.id;
     if (sample.id != -1) {
-    let found = this.samples.find(x => x.id == sample.id);
-    this.sample = found;
-    this.routeConfig.navModel.setTitle(found.goat.nombre);
-    this.originalSample = JSON.parse(JSON.stringify(found));
-    this.originalSample.sampleDate = this.dateFormatValueConverter.toView(this.originalSample.sampleDate);
+      let found = this.samples.find(x => x.id == sample.id);
+      this.sample = found;
+      this.routeConfig.navModel.setTitle(found.goat.nombre);
+      this.originalSample = JSON.parse(JSON.stringify(found));
+      this.originalSample.sampleDate = this.dateFormatValueConverter.toView(this.originalSample.sampleDate);
     }
-//    this.api.getSampleDetails(sample.id).then(sample => {
-//              this.sample = sample;
-//              this.routeConfig.navModel.setTitle(sample.goat.nombre);
-//              this.originalSample = JSON.parse(JSON.stringify(sample));
-////              this.ea.publish(new SampleViewed(this.sample));
-//              console.log("Viewing " + sample.nombre);
-//              });
     return true;
   }
 
   activate(params, routeConfig) {
       this.routeConfig  = routeConfig;
-//      this.api.getSampleList().then(samples => this.samples = samples);
-  //     this.api.fetchGoatList().then(goats => this.goats = goats);
       var myPromise = this.wild.fetchGoatList();
       myPromise.then(response => response.json())
                   .then(data => {
                           console.log(data);
                           this.goats = data;
                   });
-  //    myPromise.then(goats => this.goats = goats);
-  //    this.wild.fetchGoatList().then(goats => this.goats = goats);
       console.log("activate with " + params.id);
       if (params.id == undefined) {
         this.createNew();
       }  else {
         console.log("start of else block calling api...");
-//        return this.api.getSampleDetails(params.id).then(sample => {
-//          this.sample = sample;
-//          this.routeConfig.navModel.setTitle(sample.goat.nombre);
-//          this.originalSample = JSON.parse(JSON.stringify(sample));
-//          this.ea.publish(new SampleViewed(this.sample));
-//      });
       }
     }
-
-    get canSave() {
-        return this.sample.nombre && this.sample.liters && this.sample.sampleDate;
-      }
 
     save() {
         console.log("saving....");
@@ -97,23 +76,6 @@ export class Sample {
           this.originalSample.sampleDate =
           this.ea.publish(new SampleUpdated(this.sample));
         });
-      }
-
-      canDeactivate() {
-      // TODO why doesn't this work?
-//        if (!areEqual(this.originalSample, this.sample)) {
-//          let result = confirm('You have unsaved changes. Are you sure you wish to leave?');
-//
-//          if (!result) {
-//            this.ea.publish(new SampleViewed(this.sample));
-//          }
-//          return result;
-//        }
-        return true;
-      }
-
-      clean() {
-        return this.sample === undefined || areEqual(this.originalSample, this.sample);
       }
 
       createNew() {

@@ -1,5 +1,6 @@
 export default {
   debug: true,
   testing: true,
-  apiBaseUrl: 'http://localhost:8080/farm-production/'
+  apiBaseUrl: 'http://localhost:8080/farm-production/',
+  'useXDomain': true
 };
