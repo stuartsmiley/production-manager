@@ -13,19 +13,16 @@ export class Login{
 	password='';
 	login(){
 
-
-	    //var creds = "grant_type=password&email=" + this.email + "&password=" + this.password;
 		return this.auth.login(this.email, this.password)
-        //return this.auth.login(creds)
-		.then(response=>{
-			console.log("successfully authenticated " + + response);
-		})
-		.catch(err=>{
+		  .then(response=>{
+			  console.log("successfully authenticated " + + response);
+		  })
+		  .catch(err=>{
             err.json().then(function(e){
             console.log("login failure : " + e.message);
             });
 
-		});
+		  });
 	};
 
 }
