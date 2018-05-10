@@ -17,6 +17,7 @@ export class CustomFetch extends HttpClient {
                         'X-Requested-With': 'Fetch'
                     }
                 })
+                .rejectErrorResponses()
                 //we call ourselves the interceptor which comes with aurelia-auth
                 //obviously when this custom Http Client is used for services
                 //which don't need a bearer token, you should not inject the token interceptor

@@ -6,6 +6,12 @@ export class DateFormatValueConverter {
    }
 }
 
+export class DateOnlyValueConverter {
+    toView(value) {
+       return dateFormat(value, 'yyyy-mm-dd')
+    }
+}
+
 export class SimpleDateFormatValueConverter {
     toView(value) {
         return dateFormat(value, 'mm/dd/yyyy HH:MM')

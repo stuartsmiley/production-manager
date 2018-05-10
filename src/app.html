@@ -5,6 +5,7 @@
 
 
   <nav-bar router.bind="router"></nav-bar>
+  <loading-indicator loading.bind="router.isNavigating || api.isRequesting"></loading-indicator>
   <div class="page-host">
     <router-view></router-view>
   </div>

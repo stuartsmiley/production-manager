@@ -1,0 +1,35 @@
+<template>
+  <require from = "./common/converters"></require>
+  <div class="container">
+    <p class="bg-success" textcontent.bind="saveMessage"></p>
+    <p class="bg-danger" textcontent.bind="errorMessage"></p>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">Rainfall Measurement</h3>
+          </div>
+          <div class="panel-body">
+            <form role="form" class="form-horizontal">
+              <input type="hidden" value.bind="id"/>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="mm">Measurement (mm)</label>
+                <div class="col-sm-2">
+                  <input type="number" id="mm" placeholder="mm" class="form-control" value.bind="millimeters">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="raindate">Date</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" id="raindate" value.bind="recordedOn | dateOnly & updateTrigger:'blur'">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="button-bar">
+          <button class="btn btn-success" click.delegate="save()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -67,6 +67,7 @@ export class Sample {
 
     save() {
         console.log("saving....");
+        this.wild.isRequesting = true;
         this.wild.saveSample(this.sample)
           .then(response => response.json())
           .then(savedSample => {
@@ -75,6 +76,7 @@ export class Sample {
           this.originalSample = JSON.parse(JSON.stringify(savedSample));
           this.originalSample.sampleDate =
           this.ea.publish(new SampleUpdated(this.sample));
+          this.wild.isRequesting = false;
         });
       }
 
