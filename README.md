@@ -20,4 +20,10 @@ Then build the app and run it locally with:
 ## Generators
 see http://aurelia.io/hub.html#/doc/article/aurelia/framework/latest/the-aurelia-cli/6
 
+## production deployment
+```au build --env prod```
+copy index.html to /opt/wildfly/welcome-content
+copy scripts/vendor-bundle-*.js to   /opt/wildfly/welcome-content/scripts
+copy scripts/app-bundle-*.js to /opt/wildfly/welcome-content/scripts and rename app-bundle.js
+
 
